@@ -1,0 +1,5 @@
+# Each app has its own .gitignore; these are safety nets for the repo root.
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
