@@ -352,4 +352,3 @@ frontend/
   Dockerfile, .env.example
 ```
 
-The frontend was scaffolded from [JCodesMore/ai-website-cloner-template](https://github.com/JCodesMore/ai-website-cloner-template) (MIT, see `frontend/LICENSE`). "Fireflies" and "Fred" are trademarks of Fireflies.ai; this is a non-commercial educational clone branded as Hersheys.ai. Brand assets live in `frontend/public/brand/` (logo, mark) and `frontend/src/app/` (`icon.png`, `apple-icon.png`, `favicon.ico`).
