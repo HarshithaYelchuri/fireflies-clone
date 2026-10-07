@@ -317,3 +317,12 @@ def test_generate_notes_endpoint(client):
     regenerated = client.post(f"/api/meetings/{meeting['id']}/generate-notes").json()
     assert regenerated["summary"]["overview"] != "edited"
     assert len(regenerated["action_items"]) == len(meeting["action_items"])  # existing tasks are never duplicated
+
+
+def test_cors_origins_tolerate_dashboard_formatting():
+    from app.config import _origins
+
+    assert _origins(' "https://app.example.com/" , http://localhost:3000/,, ') == [
+        "https://app.example.com",
+        "http://localhost:3000",
+    ]

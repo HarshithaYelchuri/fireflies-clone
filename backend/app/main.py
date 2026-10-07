@@ -18,6 +18,11 @@ logger = logging.getLogger("app")
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
+    # Printed at startup so deployments can check the CORS setup in their logs.
+    startup_log = logging.getLogger("uvicorn.error")
+    startup_log.info("CORS allowed origins: %s", settings.cors_origins)
+    startup_log.info("CORS allowed origin regex: %s", settings.cors_origin_regex)
+    startup_log.info("Google sign-in: %s", "enabled" if settings.google_client_id else "disabled (GOOGLE_CLIENT_ID not set)")
     init_db()
     if settings.auto_seed:
         with SessionLocal() as db:

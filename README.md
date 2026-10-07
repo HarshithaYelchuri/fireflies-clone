@@ -273,6 +273,19 @@ docker run -p 3000:3000 fireflies-web
 
 Typical hosting is the frontend on Vercel (root directory `frontend`, env `NEXT_PUBLIC_API_URL`) and the backend on Render, Railway or Fly.io (root directory `backend`, start command `uvicorn app.main:app --host 0.0.0.0 --port $PORT`, with a persistent disk for SQLite).
 
+**Deployment checklist (Vercel + Railway)**
+
+| Where | Setting | Value |
+| --- | --- | --- |
+| Vercel | `NEXT_PUBLIC_API_URL` | The Railway URL, e.g. `https://<app>.up.railway.app` (no trailing slash). Redeploy after changing it; it's baked in at build time |
+| Railway | `CORS_ORIGINS` | The **exact** frontend origin, e.g. `https://<project>.vercel.app`: scheme + host, no path. Trailing slashes and quotes are tolerated. Separate several with commas |
+| Railway | `CORS_ORIGIN_REGEX` *(optional)* | To also allow Vercel preview URLs: `https://<project>(-[a-z0-9-]+)?\.vercel\.app` |
+| Railway | `GOOGLE_CLIENT_ID` | The OAuth Web client ID |
+| Google Cloud Console | Authorized JavaScript origins | `https://<project>.vercel.app` (exact; Google allows no wildcards, so preview URLs can't use Google sign-in) |
+| Vercel | Settings → Deployment Protection | Share the **production domain**. Per-deployment URLs (`<project>-<hash>-<team>.vercel.app`) are protected by Vercel Authentication and show "Request access" to anyone outside the team. Disable Vercel Authentication if those links must be public too |
+
+On startup the API logs `CORS allowed origins: […]` and whether Google sign-in is enabled. If the browser reports a **CORS error**, check that the origin in that log line matches the page's address bar exactly.
+
 ---
 
 ## Assumptions
