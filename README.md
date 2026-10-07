@@ -2,7 +2,7 @@
 
 # Hersheys.ai: Meeting Notes Workspace
 
-**Hersheys.ai** is a full-stack recreation of the [Fireflies.ai](https://fireflies.ai/) web app's core meeting workflow, under its own name and logo. It includes a meetings library, a meeting page with a speaker-labelled, timestamped transcript synced to a media player, AI notes (keywords, overview, bullet notes), a time-stamped outline (topics/chapters), and action items. All of this data is persisted in SQLite behind a FastAPI REST API.
+**Hersheys.ai** is a full-stack web app. It includes a meetings library, a meeting page with a speaker-labelled, timestamped transcript synced to a media player, AI notes (keywords, overview, bullet notes), a time-stamped outline (topics/chapters), and action items. All of this data is persisted in SQLite behind a FastAPI REST API.
 
 ```
 fireflies-assignment/
